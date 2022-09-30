@@ -1,0 +1,1 @@
+extern HINSTANCE        gDllInstance;       // Instance passed to DllMain

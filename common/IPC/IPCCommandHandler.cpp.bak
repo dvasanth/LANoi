@@ -1,0 +1,304 @@
+#include "StdAfx.h"
+#include "IPCCommandHandler.h"
+
+
+const TCHAR		COMMAND_NODE[]=_T("command");
+const TCHAR		PARAM_NODE[]=_T("parameters");
+const TCHAR		RETURN_VAL_NODE[]=_T("returnvalue");
+
+//const TCHAR		IPC_NAME[]=_T("{3FAB0660-208D-4898-AA25-14D0DD1B5E3B}.LANoiIPC");
+const TCHAR		IPC_NAME[]=TEXT("\\\\.\\pipe\\{3FAB0660-208D-4898-AA25-14D0DD1B5E3B}.LANoiIPC"); 
+const TCHAR		IPC_NAME_XML[]=TEXT("LANoiIPC"); 
+
+CIPCCommandHandler::CIPCCommandHandler(void)
+{
+}
+
+CIPCCommandHandler::~CIPCCommandHandler(void)
+{
+}
+
+/***************************************
+Invoke this to get notification from UI
+***************************************/
+BOOL	CIPCCommandHandler::NotifyUIRequest(HANDLE hCmdNotify)
+{
+	if(!m_IPC.InitServer(IPC_NAME,hCmdNotify))
+	{
+		SetLastErrorMessage(m_IPC.GetLastErrorMessage()); 
+	}
+	return m_IPC.PendClientAccept(); 
+}
+/******************************************
+Invoke IPC to service - can be used to invoke  RPC functions
+*******************************************/
+BOOL	CIPCCommandHandler::NotifyServiceRequest(HANDLE hCmdNotify)
+{
+	if(m_IPC.ConnectToServer(IPC_NAME,hCmdNotify))
+	{
+		return TRUE;
+		//return m_IPC.PendSingleRead();
+	}
+	SetLastErrorMessage(m_IPC.GetLastErrorMessage()); 
+	return FALSE;
+}
+/************************************************
+Called after hCmdNotify event is set
+************************************************/
+BOOL	CIPCCommandHandler::HandleCommand(IRPCExecute *pRPCExecute)
+{
+	BOOL			bRet=FALSE;
+
+	switch(m_IPC.GetPendingState())
+	{
+		case CIPC::WAITING_FOR_CLIENT:
+			bRet=m_IPC.PendSingleRead();//client has been connected try read the data
+			break;
+		case CIPC::CLIENT_READ_PENDING:
+			{
+				BYTE		*pReceivedStream=NULL;
+				DWORD		dwDataLen=0;
+				//read the data pipe
+				if(m_IPC.ReadStream(pReceivedStream,dwDataLen))
+				{
+					//Execute the function command 
+					ExecuteRPCFunction(pRPCExecute,pReceivedStream,dwDataLen);
+					m_IPC.PendSingleRead();//pend another read
+					bRet= TRUE;
+					break;
+				}
+				//connection dropped wait for another client
+				if(m_IPC.GetSessionType()==CIPC::SERVER)  
+											bRet=m_IPC.PendClientAccept();
+				//connection to server failed retry again
+				if(m_IPC.GetSessionType()==CIPC::CLIENT)
+							bRet=m_IPC.ReconnectToServer(IPC_NAME); 
+			}
+			break;
+
+	}
+
+	//set the error message for the last ipc call
+	SetLastErrorMessage( m_IPC.GetLastErrorMessage()); 
+	return bRet;
+}
+/***************************************
+get the command from the XML request & invoke the functions
+***************************************/
+BOOL CIPCCommandHandler::ExecuteRPCFunction(IRPCExecute *pRPCExecute,BYTE *pByXMLData,DWORD dwDataLen)
+{
+	CXmlSerializer      XmlReq;
+	IPC_COMMAND			IpcCommand;
+	DWORD				dwRet;
+
+
+	XmlReq.LoadXML (CString(pByXMLData),IPC_NAME);
+	IpcCommand=GetCommand( XmlReq);
+	
+
+	switch(IpcCommand)
+	{
+		case CREATE_INVITATION:
+			{
+				CString		 sNickName,sPassword,sSessionName,sSessionXMLString,sFilepath;
+				FILETIME	 ftNotValidAfterTime;
+				sNickName=GetStringParam(XmlReq);
+				sPassword=GetStringParam(XmlReq);
+				sSessionName=GetStringParam(XmlReq);
+				sSessionXMLString=GetStringParam(XmlReq);
+				GetBytesParam(XmlReq,(PBYTE)&ftNotValidAfterTime,sizeof(ftNotValidAfterTime)); 
+				sFilepath=GetStringParam(XmlReq);
+				dwRet=pRPCExecute->CreateInvitation(sNickName,sPassword,sSessionName,sSessionXMLString,ftNotValidAfterTime,sFilepath);
+			}
+			break;
+		case JOIN_INVITATION:
+			dwRet=pRPCExecute->JoinInvitation(GetStringParam(XmlReq),GetStringParam(XmlReq),GetStringParam(XmlReq));
+			break;
+		case CREATE_EXISTING:
+			break;
+		case JOIN_EXISTING:
+			break;
+	}
+	SetDWORDReturnValue(dwRet);
+	return TRUE;
+}
+/***********************************************
+this writes the return value to the pipe
+***********************************************/
+void CIPCCommandHandler::SetDWORDReturnValue(DWORD dwRet)
+{
+	CXmlSerializer      XmlRet;
+	CString				sXmlRet;
+
+	//write the return value
+	XmlRet.Create( IPC_NAME_XML,NULL);
+	XmlRet.WriteGroupBegin(RETURN_VAL_NODE);
+	XmlRet.Write(RETURN_VAL_NODE,(long)dwRet);
+	XmlRet.WriteGroupEnd();
+
+
+	sXmlRet=XmlRet.GetXml(); 
+	m_IPC.WriteStream((LPBYTE)(LPCTSTR)sXmlRet,sXmlRet.GetLength()*sizeof(TCHAR)+sizeof(TCHAR));
+}
+/********************************************
+Reads the return value from the pipe
+*******************************************/
+DWORD CIPCCommandHandler::GetReturnDWORDValue(CXmlSerializer      &XmlReq)
+{
+	CString				sXmlRPC;
+	BYTE				*pReceivedStream=NULL;
+	DWORD				dwDataLen=0;
+
+	sXmlRPC=XmlReq.GetXml(); 
+	m_IPC.WriteStream((LPBYTE)(LPCTSTR)sXmlRPC,sXmlRPC.GetLength()*sizeof(TCHAR)+sizeof(TCHAR));
+	
+	//get the return value synchronously
+	m_IPC.PendSingleRead();
+	//read the data pipe
+	if(m_IPC.ReadStream(pReceivedStream,dwDataLen))
+	{
+		CXmlSerializer      XmlReturn;	
+		DWORD				dwRet=0;
+
+		XmlReq.LoadXML (CString((LPCTSTR)pReceivedStream),IPC_NAME_XML);
+		XmlReq.ReadGroupBegin(RETURN_VAL_NODE);
+		XmlReq.Read(RETURN_VAL_NODE,dwRet);
+		XmlReq.ReadGroupEnd();
+		return dwRet;
+	}
+	return 0;
+
+}
+/************************************************************************
+Invokes the createinvitation via ipc & gets the ret value synchrosously
+************************************************************************/
+BOOL CIPCCommandHandler::CreateInvitation(CString sNickName,CString sPassword,CString sSessionName,CString sSessionXMLString,FILETIME ftNotValidAfterTime,CString sFilepath)
+{
+	CXmlSerializer      XmlReq;
+
+
+	XmlReq.Create(IPC_NAME);
+	SetCommand(XmlReq,CREATE_INVITATION);
+	//sets the parameter in the same order
+	SetStringParam(XmlReq,sNickName);
+	SetStringParam(XmlReq,sPassword);
+	SetStringParam (XmlReq,sSessionName);
+	SetStringParam (XmlReq,sSessionXMLString);
+	SetBytesParam(XmlReq,(PBYTE)&ftNotValidAfterTime,sizeof(ftNotValidAfterTime)); 
+	SetStringParam(XmlReq,sFilepath);
+
+	return GetReturnDWORDValue(XmlReq);
+}
+/******************************************************************************
+Invokes the join invitation & get the ret value from RPC
+******************************************************************************/
+BOOL CIPCCommandHandler::JoinInvitation(CString sPeerName,CString sFilePath,CString sPassword)
+{
+	CXmlSerializer      XmlReq;
+
+
+	XmlReq.Create(IPC_NAME_XML,NULL);
+	SetCommand(XmlReq,JOIN_INVITATION);
+	//sets the parameter in the same order
+	SetStringParam(XmlReq,sPeerName);
+	SetStringParam(XmlReq,sFilePath);
+	SetStringParam(XmlReq,sPassword);
+
+	return GetReturnDWORDValue(XmlReq);
+}
+/************************************************
+Gets the command from the XML 
+************************************************/
+CIPCCommandHandler::IPC_COMMAND CIPCCommandHandler::GetCommand(CXmlSerializer  &XmlReq)
+{
+	DWORD    dwCommand;
+
+	XmlReq.ReadGroupBegin(COMMAND_NODE);
+	XmlReq.Read( COMMAND_NODE,dwCommand);
+	XmlReq.ReadGroupEnd(); 
+
+	return IPC_COMMAND(dwCommand);
+}
+
+/*********************************************
+Sets the command in the XML
+*********************************************/
+void CIPCCommandHandler::SetCommand(CXmlSerializer  &XmlReq,IPC_COMMAND Command)
+{
+	XmlReq.WriteGroupBegin(COMMAND_NODE);
+	XmlReq.Write(COMMAND_NODE,LONG(Command));
+	XmlReq.WriteGroupEnd(); 
+}
+/*********************************************************
+Sets the string param on the xml file
+**********************************************************/
+void CIPCCommandHandler::SetStringParam(CXmlSerializer  &XmlReq,CString sParam)
+{
+	XmlReq.WriteGroupBegin(PARAM_NODE);
+	XmlReq.Write(PARAM_NODE,(LPCTSTR)sParam);
+	XmlReq.WriteGroupEnd(); 
+}
+/*******************************************************
+Gets the string param from the xml request
+*******************************************************/
+CString CIPCCommandHandler::GetStringParam(CXmlSerializer  &XmlReq)
+{
+	CString sRet;
+	XmlReq.ReadGroupBegin(PARAM_NODE);
+	XmlReq.Read(PARAM_NODE, sRet);
+	XmlReq.ReadGroupEnd(); 
+	return sRet;
+
+}
+/***************************************
+Gets DWORD from the XML
+****************************************/
+DWORD CIPCCommandHandler::GetDWORDParam(CXmlSerializer  &XmlReq)
+{
+	DWORD dwRet;
+	XmlReq.ReadGroupBegin(PARAM_NODE);
+	XmlReq.Read(PARAM_NODE,dwRet);
+	XmlReq.ReadGroupEnd(); 
+	return dwRet;
+}
+/*************************************
+Sets the DWORD to the xml
+*************************************/
+void CIPCCommandHandler::SetDWORDParam(CXmlSerializer  &XmlReq,DWORD dwValue)
+{
+	XmlReq.WriteGroupBegin(PARAM_NODE);
+	XmlReq.Write(PARAM_NODE,dwValue);
+	XmlReq.WriteGroupEnd();
+}
+/***********************************************
+Gets BYTES
+************************************************/
+void CIPCCommandHandler::GetBytesParam(CXmlSerializer  &XmlReq,PBYTE pParam,DWORD dwParamLen)
+{
+	PBYTE		pTemp=NULL;
+	DWORD		dwLen=0;
+	BOOL		bRet=FALSE;
+
+	XmlReq.ReadGroupBegin(PARAM_NODE);
+	XmlReq.Read(PARAM_NODE,pTemp,dwLen);
+	if(dwLen)
+	{
+		if(dwParamLen>=dwLen)
+		{
+			memcpy(pParam,pTemp,dwParamLen);
+			bRet=TRUE;
+		}
+		XmlReq.FreeBytes(pTemp);
+	}
+	XmlReq.ReadGroupEnd();
+
+}
+/**********************************************
+sets the bytes
+**********************************************/
+void CIPCCommandHandler::SetBytesParam(CXmlSerializer  &XmlReq,PBYTE pParam,DWORD dwParamLen)
+{
+	XmlReq.WriteGroupBegin(PARAM_NODE);
+	XmlReq.Write(PARAM_NODE,pParam,dwParamLen);
+	XmlReq.WriteGroupEnd();
+}

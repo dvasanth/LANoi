@@ -1,0 +1,5 @@
+LIBRARY    LOILSP.DLL
+EXPORTS   
+     WSPStartup @1
+     DllRegisterServer    PRIVATE
+     DllUnregisterServer    PRIVATE

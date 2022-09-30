@@ -1,0 +1,486 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\LANoiproui.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "icons\\trayicon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 178, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About LAN On Internet Pro"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,20,20
+    LTEXT           "LAN On Internet Pro Beta",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2009",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,118,41,50,14,WS_GROUP
+END
+
+IDD_LANOIPROUI_DIALOG DIALOGEX 0, 0, 216, 296
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE
+EXSTYLE WS_EX_APPWINDOW
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_ONLINE_PEERS,"SysTreeView32",WS_HSCROLL | WS_TABSTOP,18,103,181,169
+    PUSHBUTTON      "",IDC_ADD,23,74,40,22
+    PUSHBUTTON      "",IDC_JOIN,67,74,40,22
+    PUSHBUTTON      "",IDC_EXISTING,111,74,79,22
+    CONTROL         1024,IDC_CLOSE,"Static",SS_BITMAP | SS_NOTIFY,201,5,11,10
+END
+
+IDD_SESSION_SELECT DIALOGEX 0, 0, 268, 135
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_CREATE_NICKNAME,101,26,138,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_SESSION_LIST,101,58,138,42,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EXPIRY_DATE_LISTS,101,109,138,42,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Nickname       :",IDC_STATIC,36,26,48,12
+    LTEXT           "Session          :",IDC_STATIC,36,58,58,12
+    LTEXT           "Expires in       :",IDC_STATIC,36,110,48,8
+    PUSHBUTTON      "Add New Session",IDC_ADD_NEW_SESSION,179,83,60,12
+END
+
+IDD_INVITATION_SAVE DIALOGEX 0, 0, 256, 165
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Browse..",IDC_BROWSE,198,37,41,12
+    EDITTEXT        IDC_PASSWORD,38,82,149,12,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_CONFIRM_PASSWORD,38,126,149,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Enter a path and filename :",IDC_STATIC,38,21,90,8
+    EDITTEXT        IDC_FILEPATH,38,37,149,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Password (at least 6 characters) :",IDC_STATIC,38,64,110,8
+    LTEXT           "Confirm password :",IDC_STATIC,38,110,63,8
+END
+
+IDD_INVITATION_AUTH DIALOGEX 0, 0, 238, 93
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_JOIN_NICKNAME,125,24,102,12,ES_AUTOHSCROLL
+    LTEXT           "Nick name           :",IDC_STATIC,60,24,58,8
+    LTEXT           "Password           :",IDC_STATIC,60,56,56,8
+    EDITTEXT        IDC_JOIN_PASSWORD,125,56,102,12,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+IDD_EXISTING_INVITATIONS DIALOGEX 0, 0, 256, 111
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_EXISTING_INVITATION_LIST,40,33,180,33,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Existing networks :",IDC_STATIC,40,17,66,8
+    PUSHBUTTON      "Delete",IDC_DELETE_INVITATION,158,57,62,12
+    LTEXT           "Expires on :",IDC_STATIC,40,67,42,8
+    EDITTEXT        IDC_EXPIRY_TIME,40,82,180,12,ES_AUTOHSCROLL | ES_READONLY
+END
+
+IDD_NEW_SESSION DIALOGEX 0, 0, 262, 153
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add New Session"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Add",ID_ADD,116,84,54,12
+    LTEXT           "Session name             :",IDC_STATIC,19,18,73,8
+    EDITTEXT        IDC_SESSION_NAME,107,19,135,12,ES_AUTOHSCROLL
+    LTEXT           "Port information         :",IDC_STATIC,19,48,73,8
+    EDITTEXT        IDC_PORT_INFORMATION,107,48,135,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Advanced >>",IDC_ADVANCED_BUTTON,188,84,54,12
+    LTEXT           "Application name        :",IDC_STATIC,21,107,74,8
+    COMBOBOX        IDC_PROCESS_LIST,109,107,135,22,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Browse",IDC_ADD_PROCESS,188,131,54,12
+    LTEXT           "e.g. 80,100,1200-1202",IDC_STATIC,166,67,76,8
+END
+
+IDD_PROGRESS_DIALOG DIALOGEX 0, 0, 166, 82
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Cancel",IDCANCEL,101,62,50,14
+    LTEXT           "",IDC_STATUS_UPDATE_EDIT,20,15,121,14
+    CONTROL         "",IDC_PROGRESS,"msctls_progress32",WS_BORDER,17,39,132,12
+END
+
+IDD_CONTACT_SUPPORT DIALOGEX 0, 0, 268, 267
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Contact Support"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_USERNAME,80,35,142,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FROM_E_MAIL,80,61,142,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SUBJECT_EMAIL,80,85,142,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MESSAGE_EMAIL,18,121,234,114,ES_MULTILINE | ES_WANTRETURN,WS_EX_LEFTSCROLLBAR
+    DEFPUSHBUTTON   "Send",IDC_SEND,149,246,42,14
+    PUSHBUTTON      "Cancel",IDCANCEL,211,246,42,14
+    LTEXT           "To                    :",IDC_STATIC,17,12,52,8
+    LTEXT           " support@lanoninternet.com",IDC_STATIC,80,12,142,12,0,WS_EX_CLIENTEDGE
+    LTEXT           "Your E-mail      :",IDC_STATIC,18,61,51,8
+    LTEXT           "Subject            :",IDC_STATIC,18,85,54,12
+    LTEXT           "Message         :",IDC_STATIC,19,107,59,8
+    LTEXT           "Your Name      :",IDC_STATIC,18,35,52,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Crow-Soft"
+            VALUE "FileDescription", "LAN On Internet Tray"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "LANoiproui.exe"
+            VALUE "LegalCopyright", "Crow-soft  All rights reserved."
+            VALUE "OriginalFilename", "LANoiproui.exe"
+            VALUE "ProductName", "LAN On Internet Pro"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_LANOIPROUI_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 181
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 246
+    END
+
+    IDD_SESSION_SELECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 128
+    END
+
+    IDD_INVITATION_SAVE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 158
+    END
+
+    IDD_INVITATION_AUTH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 231
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 86
+    END
+
+    IDD_EXISTING_INVITATIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 104
+    END
+
+    IDD_NEW_SESSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 255
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 146
+    END
+
+    IDD_CONTACT_SUPPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 260
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_UI_MENU MENU 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Add Network",                 IDM_INVITE_PARTNER
+        MENUITEM "Join Network",                IDM_JOIN_PARTNER
+        MENUITEM "Existing Networks",           IDM_EXISTING_INVITATIONS
+        MENUITEM "Refresh",                     IDM_REFRESH
+        MENUITEM "Exit",                        IDM_EXIT
+    END
+    POPUP "Help"
+    BEGIN
+        MENUITEM "Contact Support",             ID_HELP_CONTACTSUPPORT
+        MENUITEM "About",                       ID_HELP_ABOUT
+    END
+END
+
+IDR_TRAY_POPUP MENU 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "Show LAN On Internet Pro",    ID_SHOWLANOIPRO
+        MENUITEM "Exit",                        ID_EXIT
+    END
+END
+
+IDR_ONLINE_PEER_CONTEXTMENU MENU 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "Close Server",                ID_CLOSESESSION
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_SESSION_SELECT DLGINIT
+BEGIN
+    IDC_SESSION_LIST, 0x403, 19, 0
+0x6552, 0x6f6d, 0x6574, 0x4120, 0x7373, 0x7369, 0x7473, 0x6e61, 0x6563, 
+"\000" 
+    IDC_SESSION_LIST, 0x403, 13, 0
+0x6143, 0x6c6c, 0x6f20, 0x2066, 0x7564, 0x7974, "\000" 
+    IDC_SESSION_LIST, 0x403, 22, 0
+0x6552, 0x6f6d, 0x6574, 0x4420, 0x7365, 0x746b, 0x706f, 0x4120, 0x6363, 
+0x7365, 0x0073, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_CLOSE               BITMAP                  "E:\\LANoipro\\code\\make\\bin\\images\\close_icon.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About LANoiproui..."
+    IDS_VALID_EMAIL_ADDRESS "Please provide your e-mail address for providing assitance."
+    IDS_SESSIONPAGE_SUBTITLE 
+                            "Provide a unique nickname to identify yourself in the network. Also select the session for this network with a expiry time."
+    IDS_INVITE_FILE_EXTENSION_FILTER 
+                            "Invitation Files(*.LANoipro)|*.LANoipro||"
+    IDS_ERR_EMPTY_NICKNAME  "Please enter a nickname for the session"
+    IDS_OPEN_INVITE_DLG_CAPTION "Select the network invitation file...."
+    IDS_LOG_TRACE_REG_KEY   "Software\\CrowSoft\\LAN On Internet Pro"
+    IDS_TRACE_FILENAME      "uilog.txt"
+    IDS_CREATE_INVITATION_SUCCESS 
+                            "Network invitation file is created successfully."
+    IDS_JOIN_INVITATION_SUCCESS "Successfully connected to the %s network."
+    IDS_JOIN_INVITATION_FAILURE "Failed to join the %s network.%s"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INVITESAVEPAGE_SUBTITLE 
+                            "Provide the location where you like to save the password protected network invitation file."
+    IDS_MAIL_SEND_SUCCESS   "Error report is successfully sent to the support."
+    IDS_SESSIONPAGE_HEADER  "Network Session Selection"
+    IDS_MAIL_SEND_FAILED    "Sending error report failed. Please check your internet connection or firewall & then try again."
+    IDS_MAIL_SEND_POST_DATA "departmentid=1&name=%hs&email=%hs&subject=%hs&message=%hs&email_send=Submit"
+    IDS_MAIL_DEFAULT_MESSAGE 
+                            "<Give a small brief about the issue here. Our support team will get back to you for further assistance in the provided E-mail address>"
+    IDS_PASSWORD_LEN_LESS   "Password should be at least six (6) characters long."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLTIP_P2P_FAILED  "LAN On Internet Pro inactive"
+    IDS_ADD_NETWORK_WIZARD_CAPTION "Add Network"
+    IDS_JOINER_RESOLVING_INVITER "Resolving network server name..."
+    IDS_JOIN_NETWORK_WIZARD_CAPTION "Join Network"
+    IDS_EXISTING_NETWORK_WIZARD_CAPTION "Show Existing"
+    IDS_NO_VALID_INVITATION_EXIST 
+                            "All network invitations are expired or no invitation is created."
+    IDS_AUTHPAGE_HEADER     "Network Invitation authentication"
+    IDS_AUTHPAGE_SUBTITLE   "Provide a unique nickname to identify yourself in the network & the password associated with the invitation file."
+    IDS_SAVE_INVITE_DLG_CAPTION "Save the network invitation File...."
+    IDS_INVITE_FILE_EXTENSION "LANoipro"
+    IDS_EXISTINGPAGE_HEADER "Existing network invitations"
+    IDS_ERR_INVALID_INVITATION_FILEPATH 
+                            "Please select a valid path for the invitation File"
+    IDS_ERR_EMPTY_PASSWORD  "Please enter a valid password"
+    IDS_EXISTINGPAGE_SUBTITLE 
+                            "Displays the existing networks created previously. Select a invitation to delete or click next to create a new network invitation."
+    IDS_ERR_PASSWORD_NO_MATCH "Password doesn't match"
+    IDS_INVITESAVEPAGE_HEADER "Saving the network invitation"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERR_INVALID_SESSIONNAME "Select a valid session name"
+    IDS_ERR_FAILED_TO_SAVE_INVITATION "Failed to save the invitation file"
+    IDS_ERR_SERVICE_NOT_STARTED 
+                            "Failed to start the 'LAN On Internet Pro' service"
+    IDS_ERR_EMPTY_SESSION_NAME "Provide a valid session name"
+    IDS_ERR_EMPTY_PORT_VALUES "Provide valid port values separated by comma."
+    IDS_SESSION_NAME_EXISTS "Already a session with this name exists. Please provide a unique session name."
+    IDS_EXE_FILE_EXTENSION_FILTER "Application Exe Files(*.exe)|*.exe||"
+    IDS_OPEN_EXE_DLG_CAPTION "Select the application filepath..."
+    IDS_EXE_FILE_EXTENSION  "Executable"
+    IDS_ADVANCED_BTN_EXPAND "Advanced >>"
+    IDS_ADVANCED_BTN_CONTRACT "Advanced <<"
+    IDS_JOINER_CONNECTING_INVITER "Connecting to the network server...."
+    IDS_APP_TITLE           "LAN On Internet Pro"
+    IDS_BALLON_P2P_STARTED  "LAN On Internet Pro Peer-To-Peer infrastructure initialized successfully"
+    IDS_TOOLTIP_P2P_STARTED "LAN On Internet Pro active"
+    IDS_BALLONTIP_P2P_FAILED 
+                            "LAN On Internet Pro Peer-To-Peer infrastructure failed to start or stopped working"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "LAN On Internet Pro"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\LANoiproui.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

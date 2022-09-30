@@ -1,0 +1,106 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "cmnresource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "cmnresource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_FAILED_TO_CREATE_FILE "File creation failed for writing"
+    IDS_FAILED_OPEN_FILE    "Failed to open file"
+    IDS_WRONG_FILE_PASSWORD "Invalid password or corrupted invitation file"
+    IDS_ERR_IPC_FAILED_TO_START "Failed to start the IPC server"
+    IDS_ERR_SERVICE_CONNECT_FAILED 
+                            "Unable to establish connection with the service"
+    IDS_ERR_IPC_READ_WRITE_ERROR "Failed to read/write to the service"
+    IDS_ERR_FAILED_TO_GET_PUBLIC_KEY "Failed to get public key"
+    IDS_ERR_FAILED_TO_FILL_SUBJECT "Failed to fill subject information"
+    IDS_ERR_FAILED_TO_SET_KEY "Failed to set authority key"
+    IDS_ERR_SIGN_FAILED     "Failed to sign the certificate"
+    IDS_ERR_CA_CERT_INFO_FAILED "Failed to get CA certificate information"
+    IDS_ERR_PFX_CONVERSION_FAILED "Failed to export certificate "
+    IDS_ERR_IMPORT_PFX      "Failed to import certificate"
+    IDS_ERR_SSL_CERTIFICATE_VALIDATE_FAILED 
+                            "SSL certificate invalid or expired"
+    IDS_FAILED_GET_SUBJECT_NAME 
+                            "Failed to get subject name for the certificate"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERR_FAILED_TO_GET_BLOB "Failed to get subject blob"
+    IDS_FAILED_TO_ACQUIRE_CONTEXT "Failed to acquire cert context"
+    IDS_VISTA_RA_GUIDE_HLP  "Please provide a Vista Remote Assistance file to continue. You can create the file from Start->msra.exe->""""Save Invitation as file"""" option."
+    IDS_NETMEETING_SESSION_NAME "Netmeeting"
+    IDS_RA_SESSION_NAME     "Remote Assistance"
+    IDS_RA_INVITATION_FILE_FORMAT 
+                            "<?xml version=""1.0"" encoding=""Unicode"" ?><UPLOADINFO TYPE=""Escalated""><UPLOADDATA USERNAME=""LAN On Internet Meeting"" RCTICKET=""%s"" RCTICKETENCRYPTED=""0"" DtStart=""%s"" DtLength=""300"" PassStub="""" L=""0"" /></UPLOADINFO>"
+    IDS_RA_CREATE_FAILED    "Failed to create Remote Assistance ticket"
+    IDS_RA_XML_VISTA_FORMAT "<?xml version=""1.0"" ?><UPLOADINFO TYPE=""Escalated""><UPLOADDATA USERNAME=""LAN On Internet Meeting"" RCTICKET=""%s"
+    IDS_REMOTE_STREAM_SESSION_NAME "Streaming Session (MP3,AVI,WebCAM)"
+    IDS_RDP_SESSION_NAME    "Remote Desktop Access (RDP)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

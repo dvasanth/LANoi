@@ -1,0 +1,237 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_LOISERVICE          ICON                    "LOIService.ico"
+IDI_SMALL               ICON                    "small.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_LOISERVICE MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ...",                  IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_LOISERVICE ACCELERATORS 
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About LOIService"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            128,IDC_STATIC,14,14,21,20
+    LTEXT           "LOIService, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2009",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Crow-soft"
+            VALUE "FileDescription", "LOIServi Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "LOIServi"
+            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "OriginalFilename", "LOIServi.exe"
+            VALUE "ProductName", "LAN On Internet Pro"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_OPEN_SERVICE_FAILED "Failed to open Windows Service Manager"
+    IDS_CREATE_SERVICE_FAILED "Failed to install the service"
+    IDS_DELETE_SERVICE_FAILED "Failed to remove the service"
+    IDS_SERVICE_NAME        "LOIService"
+    IDS_SERVICE_DISPLAY_NAME "LAN On Internet Service"
+    IDS_SERVICE_EXECUTE_FAILED "Failed to start the service"
+    IDS_LOG_TRACE_REG_KEY   "Software\\CrowSoft\\LAN On Internet Pro"
+    IDS_TRACE_FILENAME      "servicelog.txt"
+    IDS_ERR_P2P_IDENTITY_CREATE "Failed to create peer to peer identity"
+    IDS_ERR_P2P_NAME_RESOLVE 
+                            "Failed to resolve the network server name. Please check the inviter system is connected to internet & then try connecting again"
+    IDS_ERR_P2P_NAME_REGISTER "Failed to register DNS name"
+    IDS_ERR_P2P_REVERSE_FAILED "Failed to start P2P reverse Proxy"
+    IDS_ERR_P2P_REVERSE_CLOSED "Reverse proxy connection closed"
+    IDS_ERR_SOCK            "Failed to create the socket"
+    IDS_ERR_SET_SOCK_IPV6   "Failed to set ipv6 socket option"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERR_BIND_SOCK       "Failed to bind the socket"
+    IDS_ERR_CONNECT_FAILED  "Failed to connect to the server"
+    IDS_ERR_SET_AUTH_CERT_FAILED 
+                            "Failed to set the authentication certificate"
+    IDS_ERR_FAILED_OUT_HANDSHAKE 
+                            "Failed to initiate authentication with server"
+    IDS_ERR_FAILED_IN_HANDSHAKE 
+                            "Failed to initiate authentication for the client"
+    IDS_ERR_SSL_FAILED_DECRYPT "Failed to encrypt/decrypt the message"
+    IDS_CONNECTING_SAME_SYSTEM "Already connected to the network"
+    IDS_NETWORK_TIME_EXPIRED 
+                            "The network invitation provided has expired on %s. Please contact the invitee to request another."
+    IDS_P2P_FAILED_TO_START "LANoi P2P infrastruture failed to start or stopped working. Please try again after enabling UPnP in your router. If the problem still persists, click ""Contact Support"" to get further assitance."
+    IDS_ERR_ACCEPT_FAILED   "Failed to accept socket"
+    IDS_ERR_CLOSE_FAILED    "Connection closed with the network server"
+    IDS_ERR_FAILED_CONNECT_SERVER 
+                            "Failed to establish connection with the server"
+    IDS_ERR_FAILED_CREATE_INVITATION "Failed to write the invitation file"
+    IDS_TEREDO_NOT_FOUND    "Unable to find the teredo adapter"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

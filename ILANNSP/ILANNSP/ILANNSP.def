@@ -1,0 +1,6 @@
+LIBRARY	"ILANNSP"
+EXPORTS   
+     NSPStartup
+	 NSPCleanup
+     DllRegisterServer    PRIVATE
+     DllUnregisterServer    PRIVATE
